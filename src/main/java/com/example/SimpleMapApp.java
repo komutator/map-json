@@ -1,5 +1,6 @@
 package com.example;
-import java.awt.Point;
+import java.awt.*;
+
 import org.json.JSONObject;
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
@@ -41,15 +42,33 @@ public class SimpleMapApp {
 
 //        mapViewer.setDisplayPositionByLatLon(latitude, longitude, 10);  // Устанавливаем масштаб 10 (городской уровень)
 
+
+
+
         // Добавляем точку на карту
         MapMarkerDot marker = new MapMarkerDot(latitude, longitude);
         marker.setBackColor(java.awt.Color.RED);  // Цвет маркера
         mapViewer.addMapMarker(marker);
 
+
+
+
         // Создаем окно для отображения карты
-        JFrame frame = new JFrame("OpenStreetMap Viewer");
+        JFrame frame = new JFrame("Эра-Глонасс");
+        // помещение иконки на frame
+        ImageIcon icon = new ImageIcon("./resource/icon.png");
+        frame.setIconImage(icon.getImage());
+
+        JPanel labelPanel = new JPanel();
+        JLabel callLabel = new JLabel("Карточка вызова");
+
+        labelPanel.add(callLabel);
+
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
+        frame.getContentPane().add(BorderLayout.NORTH, labelPanel);
+
         frame.add(mapViewer);
         frame.setVisible(true);
     }
