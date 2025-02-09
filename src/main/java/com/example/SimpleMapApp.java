@@ -56,20 +56,32 @@ public class SimpleMapApp {
         // Создаем окно для отображения карты
         JFrame frame = new JFrame("Эра-Глонасс");
         // помещение иконки на frame
+
+        StatusPanel statusPanel = new StatusPanel();
+        MarkaPanel markaPanel = new MarkaPanel();
+
+
         ImageIcon icon = new ImageIcon("./resource/icon.png");
         frame.setIconImage(icon.getImage());
 
         JPanel labelPanel = new JPanel();
         JLabel callLabel = new JLabel("Карточка вызова");
-
         labelPanel.add(callLabel);
+
+
 
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
         frame.getContentPane().add(BorderLayout.NORTH, labelPanel);
+        frame.getContentPane().add(BorderLayout.WEST, statusPanel);
+        frame.getContentPane().add(BorderLayout.CENTER, markaPanel);
+        frame.getContentPane().add(BorderLayout.EAST, mapViewer);
+//        frame.setLayout(new GridLayout(2, 2));
+//        frame.add(mapViewer);
 
-        frame.add(mapViewer);
+
+//        frame.add(statusPanel);
         frame.setVisible(true);
     }
 
