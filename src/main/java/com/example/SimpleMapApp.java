@@ -65,6 +65,9 @@ public class SimpleMapApp {
         frame.setIconImage(icon.getImage());
 
         JPanel labelPanel = new JPanel();
+        Dimension d = new Dimension();
+        d.setSize(200,30);
+        labelPanel.setPreferredSize(d);
         JLabel callLabel = new JLabel("Карточка вызова");
         labelPanel.add(callLabel);
 
