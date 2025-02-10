@@ -28,22 +28,11 @@ public class SimpleMapApp {
 
         // Создаем карту
         JMapViewer mapViewer = new JMapViewer();
-        // mapViewer.setDisplayPosition(latitude,longitude,10);
-
-
-        // Устанавливаем уровень масштабирования
-        mapViewer.setZoom(10);
         int zoom = 10;  // Уровень масштабирования
         mapViewer.setZoom(zoom);
         
         Coordinate coordinate = new Coordinate(latitude, longitude);
         mapViewer.setDisplayPosition(coordinate, zoom);
-        
-
-//        mapViewer.setDisplayPositionByLatLon(latitude, longitude, 10);  // Устанавливаем масштаб 10 (городской уровень)
-
-
-
 
         // Добавляем точку на карту
         MapMarkerDot marker = new MapMarkerDot(latitude, longitude);
@@ -65,26 +54,27 @@ public class SimpleMapApp {
         frame.setIconImage(icon.getImage());
 
         JPanel labelPanel = new JPanel();
-        Dimension d = new Dimension();
-        d.setSize(200,30);
-        labelPanel.setPreferredSize(d);
+        labelPanel.setPreferredSize(new Dimension(200,30));
+
         JLabel callLabel = new JLabel("Карточка вызова");
         labelPanel.add(callLabel);
 
-
+        JPanel westPanel = new JPanel();
+        westPanel.setPreferredSize(new Dimension(300,300));
+        westPanel.add(statusPanel);
+        westPanel.add(markaPanel);
 
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        frame.setSize(1200, 800);
         frame.getContentPane().add(BorderLayout.NORTH, labelPanel);
-        frame.getContentPane().add(BorderLayout.WEST, statusPanel);
-        frame.getContentPane().add(BorderLayout.CENTER, markaPanel);
-        frame.getContentPane().add(BorderLayout.EAST, mapViewer);
-//        frame.setLayout(new GridLayout(2, 2));
-//        frame.add(mapViewer);
 
+        statusPanel.setPreferredSize(new Dimension(200,50));
+        frame.getContentPane().add(BorderLayout.WEST, westPanel);
 
-//        frame.add(statusPanel);
+        markaPanel.setPreferredSize(new Dimension(200,50));
+
+        frame.getContentPane().add(BorderLayout.CENTER, mapViewer);
         frame.setVisible(true);
     }
 
