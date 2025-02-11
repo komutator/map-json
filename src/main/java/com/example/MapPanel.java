@@ -1,4 +1,8 @@
 package com.example;
+import org.openstreetmap.gui.jmapviewer.Coordinate;
+import org.openstreetmap.gui.jmapviewer.JMapViewer;
+import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
+
 import java.awt.*;
 import javax.swing.*;
 

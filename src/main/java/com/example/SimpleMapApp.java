@@ -26,18 +26,7 @@ public class SimpleMapApp {
         double latitude = json.getDouble("latitude");
         double longitude = json.getDouble("longitude");
 
-        // Создаем карту
-        JMapViewer mapViewer = new JMapViewer();
-        int zoom = 10;  // Уровень масштабирования
-        mapViewer.setZoom(zoom);
-        
-        Coordinate coordinate = new Coordinate(latitude, longitude);
-        mapViewer.setDisplayPosition(coordinate, zoom);
 
-        // Добавляем точку на карту
-        MapMarkerDot marker = new MapMarkerDot(latitude, longitude);
-        marker.setBackColor(java.awt.Color.RED);  // Цвет маркера
-        mapViewer.addMapMarker(marker);
 
 
 
@@ -72,10 +61,14 @@ public class SimpleMapApp {
         frame.setSize(1200, 800);
         frame.getContentPane().add(BorderLayout.NORTH, labelPanel);
 
-        statusPanel.setPreferredSize(new Dimension(300,50));
+        statusPanel.setPreferredSize(new Dimension(290,50));
         frame.getContentPane().add(BorderLayout.WEST, westPanel);
 
-        markaPanel.setPreferredSize(new Dimension(300,50));
+        markaPanel.setPreferredSize(new Dimension(290,50));
+
+        MapViewer mapViewer = new MapViewer();
+        mapViewer.setMarker(latitude, longitude);
+        mapViewer.setDisplayCenter(latitude, longitude);
 
         frame.getContentPane().add(BorderLayout.CENTER, mapViewer);
         frame.setVisible(true);
