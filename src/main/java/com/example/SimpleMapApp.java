@@ -34,14 +34,15 @@ public class SimpleMapApp {
         // Создаем окно для отображения карты
         JFrame frame = new JFrame("Эра-Глонасс");
         // помещение иконки на frame
-
-        StatusPanel statusPanel = new StatusPanel();
-        MarkaPanel markaPanel = new MarkaPanel();
-
-
         ImageIcon icon = new ImageIcon("./resource/icon.png");
         frame.setIconImage(icon.getImage());
 
+
+
+        StatusPanel statusPanel = new StatusPanel();
+        statusPanel.setPreferredSize(new Dimension(290,50));
+        MarkaPanel markaPanel = new MarkaPanel();
+        markaPanel.setPreferredSize(new Dimension(290,50));
         LabelPanel labelPanel = new LabelPanel();
         labelPanel.setPreferredSize(new Dimension(200,30));
 
@@ -49,27 +50,22 @@ public class SimpleMapApp {
 //        labelPanel.add(callLabel);
 
         JPanel westPanel = new JPanel();
-        westPanel.setPreferredSize(new Dimension(300,300));
+        westPanel.setPreferredSize(new Dimension(350,300));
         westPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         westPanel.add(statusPanel);
         westPanel.add(markaPanel);
+
+        MapViewer mapViewer = new MapViewer();
+        mapViewer.setMarker(latitude, longitude);
+        mapViewer.setDisplayCenter(latitude, longitude);
 
 
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 800);
         frame.getContentPane().add(BorderLayout.NORTH, labelPanel);
-
-        statusPanel.setPreferredSize(new Dimension(290,50));
         frame.getContentPane().add(BorderLayout.WEST, westPanel);
-
-        markaPanel.setPreferredSize(new Dimension(290,50));
-
-        MapViewer mapViewer = new MapViewer();
-        mapViewer.setMarker(latitude, longitude);
-        mapViewer.setDisplayCenter(latitude, longitude);
-
         frame.getContentPane().add(BorderLayout.CENTER, mapViewer);
         frame.setVisible(true);
     }
