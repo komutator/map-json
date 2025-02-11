@@ -11,6 +11,7 @@ public class MarkaPanel extends JPanel {
 
         add(new JLabel("VIN"));
         add(new JTextField("FWAFXO9873VV0984"));
+        setBorder(BorderFactory.createLineBorder(Color.black));
     }
 }
 

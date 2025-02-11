@@ -7,6 +7,7 @@ public class LabelPanel extends JPanel {
 //        setLayout(new GridLayout(3, 2)); // Две строки, два столбца
 
         add(new JLabel("Карточка вызова"));
+        setBorder(BorderFactory.createLineBorder(Color.black));
 
     }
 }

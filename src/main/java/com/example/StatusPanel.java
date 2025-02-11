@@ -16,6 +16,7 @@ public class StatusPanel extends JPanel {
         JTextField textField = new JTextField("ДА");
         textField.setEditable(false);
         add(textField);
+        setBorder(BorderFactory.createLineBorder(Color.black));
 
     }
 }

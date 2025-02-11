@@ -53,26 +53,29 @@ public class SimpleMapApp {
         ImageIcon icon = new ImageIcon("./resource/icon.png");
         frame.setIconImage(icon.getImage());
 
-        JPanel labelPanel = new JPanel();
+        LabelPanel labelPanel = new LabelPanel();
         labelPanel.setPreferredSize(new Dimension(200,30));
 
-        JLabel callLabel = new JLabel("Карточка вызова");
-        labelPanel.add(callLabel);
+//        JLabel callLabel = new JLabel("Карточка вызова");
+//        labelPanel.add(callLabel);
 
         JPanel westPanel = new JPanel();
         westPanel.setPreferredSize(new Dimension(300,300));
+        westPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
         westPanel.add(statusPanel);
         westPanel.add(markaPanel);
+
 
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 800);
         frame.getContentPane().add(BorderLayout.NORTH, labelPanel);
 
-        statusPanel.setPreferredSize(new Dimension(200,50));
+        statusPanel.setPreferredSize(new Dimension(300,50));
         frame.getContentPane().add(BorderLayout.WEST, westPanel);
 
-        markaPanel.setPreferredSize(new Dimension(200,50));
+        markaPanel.setPreferredSize(new Dimension(300,50));
 
         frame.getContentPane().add(BorderLayout.CENTER, mapViewer);
         frame.setVisible(true);

@@ -7,6 +7,6 @@ public class MapPanel extends JPanel {
 
 
 
-
+        setBorder(BorderFactory.createLineBorder(Color.black));
     }
 }
