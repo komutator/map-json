@@ -40,11 +40,15 @@ public class SimpleMapApp {
 
 
         StatusPanel statusPanel = new StatusPanel();
-        statusPanel.setPreferredSize(new Dimension(290,50));
+        statusPanel.setBorderName("Статус");
+        statusPanel.setPreferredSize(new Dimension(290,80));
         MarkaPanel markaPanel = new MarkaPanel();
-        markaPanel.setPreferredSize(new Dimension(290,50));
+        markaPanel.setBorderName("Марка");
+        markaPanel.setPreferredSize(new Dimension(290,80));
         LabelPanel labelPanel = new LabelPanel();
         labelPanel.setPreferredSize(new Dimension(200,30));
+
+        ButtonsPanel buttonsPanel = new ButtonsPanel();
 
 //        JLabel callLabel = new JLabel("Карточка вызова");
 //        labelPanel.add(callLabel);
@@ -55,6 +59,7 @@ public class SimpleMapApp {
 
         westPanel.add(statusPanel);
         westPanel.add(markaPanel);
+        westPanel.add(buttonsPanel);
 
         MapViewer mapViewer = new MapViewer();
         mapViewer.setMarker(latitude, longitude);

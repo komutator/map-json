@@ -2,7 +2,7 @@ package com.example;
 import java.awt.*;
 import javax.swing.*;
 
-public class MarkaPanel extends JPanel {
+public class MarkaPanel extends AbstractPanel {
     public MarkaPanel() {
         setLayout(new GridLayout(2, 2)); // Две строки, два столбца
 
@@ -11,7 +11,8 @@ public class MarkaPanel extends JPanel {
 
         add(new JLabel("VIN"));
         add(new JTextField("FWAFXO9873VV0984"));
-        setBorder(BorderFactory.createLineBorder(Color.black));
+//        setBorder(BorderFactory.createLineBorder(Color.black));
+
     }
 }
 

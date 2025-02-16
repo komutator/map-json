@@ -2,7 +2,7 @@ package com.example;
 import java.awt.*;
 import javax.swing.*;
 
-public class StatusPanel extends JPanel {
+public class StatusPanel extends AbstractPanel {
     public StatusPanel() {
         setLayout(new GridLayout(3, 2)); // Две строки, два столбца
 
@@ -16,8 +16,6 @@ public class StatusPanel extends JPanel {
         JTextField textField = new JTextField("ДА");
         textField.setEditable(false);
         add(textField);
-        setBorder(BorderFactory.createLineBorder(Color.black));
-
     }
 }
 
