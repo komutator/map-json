@@ -7,6 +7,8 @@ import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -25,7 +27,6 @@ public class SimpleMapApp {
         JSONObject json = new JSONObject(jsonString);
         double latitude = json.getDouble("latitude");
         double longitude = json.getDouble("longitude");
-
 
 
 
@@ -64,6 +65,19 @@ public class SimpleMapApp {
         MapViewer mapViewer = new MapViewer();
         mapViewer.setMarker(latitude, longitude);
         mapViewer.setDisplayCenter(latitude, longitude);
+
+        Timer timer = new Timer(1000, new ActionListener() {
+
+            int seconds = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                seconds++;
+                labelPanel.setText("Время: " + seconds + " сек");
+            }
+        });
+
+        timer.start();
 
 
 
