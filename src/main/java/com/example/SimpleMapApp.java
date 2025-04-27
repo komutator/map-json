@@ -1,10 +1,17 @@
 package com.example;
 import java.awt.*;
 
+import com.example.ConfigManager.ConfigManager;
+import com.example.db.DatabaseManager;
 import org.json.JSONObject;
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,6 +23,43 @@ import java.nio.file.Paths;
 public class SimpleMapApp {
 
     public static void main(String[] args) {
+
+        // Загружаем конфигурацию программы
+
+        ConfigManager config = new ConfigManager("config.ini");
+        config.loadOrCreateDefault();
+
+        // Чтение значения
+        String myid = config.get("myid");
+        System.out.println("MyID: " + myid);
+        String connectionString = config.get("connectionString");
+        System.out.println("MyID: " + myid);
+
+        // Изменение значения
+//        config.set("myid", "5678");
+//        config.save();
+//        System.out.println("Новое значение myid сохранено.");
+
+
+
+//  Подключаемся к БД
+        try {
+            Connection conn = DatabaseManager.getConnection();
+
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM jsondata");
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                System.out.println("Id: " + rs.getString("id") + " Json: " + rs.getString("json"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DatabaseManager.closeConnection();
+        }
+
+
         // Читаем координаты из файла test.json
         String jsonString = readFileAsString("test.json");
         if (jsonString == null) {
@@ -65,6 +109,20 @@ public class SimpleMapApp {
         MapViewer mapViewer = new MapViewer();
         mapViewer.setMarker(latitude, longitude);
         mapViewer.setDisplayCenter(latitude, longitude);
+
+
+        DatabaseListPanel databaseListPanel = new DatabaseListPanel();
+
+        // Устанавливаем слушателя выбора
+        databaseListPanel.setDatabaseListListener(selectedItem -> {
+            System.out.println("🔔 Вы выбрали: " + selectedItem);
+            // Здесь можно делать что угодно с выбранной строкой
+        });
+
+
+        westPanel.add(databaseListPanel);
+
+
 
         Timer timer = new Timer(1000, new ActionListener() {
 
