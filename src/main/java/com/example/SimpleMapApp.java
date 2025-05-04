@@ -116,8 +116,9 @@ public class SimpleMapApp {
 
 
         CenterPanel centerPanel = new CenterPanel();
-        centerPanel.add(BorderLayout.WEST, statusPanel);
         centerPanel.add(BorderLayout.WEST,markaPanel);
+        centerPanel.add(BorderLayout.WEST, statusPanel);
+
         MapViewer mapViewer = new MapViewer();
         mapViewer.setMarker(latitude, longitude);
         mapViewer.setDisplayCenter(latitude, longitude);

@@ -8,13 +8,21 @@ public class MarkaPanel extends AbstractMiniPanel {
 //        setPreferredSize(new Dimension(250,100));
         setBorderName("Марка");
 
+//      setPreferredSize(new Dimension(250, 100)); // ширина 200, высота 24 пикселя
+//        setMinimumSize(new Dimension(250, 100));
+        setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+
+
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5); // Отступы между элементами
 
 
-        addField(this, gbc, 0, "Название:");
-        addField(this, gbc, 1, "Описание:");
-        addField(this, gbc, 2, "Автор:");
+        addField(this, gbc, 0, "Название:", "Toyota Corolla");
+        addField(this, gbc, 1, "Описание:", "Бежевый цвет");
+        addField(this, gbc, 2, "Автор:", "Ямогото Чотокога");
+
+        revalidate();
+        repaint();
 
 //
 //
