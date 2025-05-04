@@ -12,7 +12,7 @@ public class DatabaseListPanel extends JPanel {
 
     public DatabaseListPanel() {
         setLayout(new BorderLayout());
-
+        setPreferredSize(new Dimension(350,700));
         listModel = new DefaultListModel<>();
         jList = new JList<>(listModel);
         JScrollPane scrollPane = new JScrollPane(jList);

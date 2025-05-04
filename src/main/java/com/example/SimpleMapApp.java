@@ -76,20 +76,17 @@ public class SimpleMapApp {
 
 
 
-        // Создаем окно для отображения карты
-        JFrame frame = new JFrame("Эра-Глонасс");
-        // помещение иконки на frame
-        ImageIcon icon = new ImageIcon("./resource/icon.png");
-        frame.setIconImage(icon.getImage());
 
 
 
         StatusPanel statusPanel = new StatusPanel();
         statusPanel.setBorderName("Статус");
         statusPanel.setPreferredSize(new Dimension(290,80));
+
         MarkaPanel markaPanel = new MarkaPanel();
         markaPanel.setBorderName("Марка");
         markaPanel.setPreferredSize(new Dimension(290,80));
+
         LabelPanel labelPanel = new LabelPanel();
         labelPanel.setPreferredSize(new Dimension(200,30));
 
@@ -102,13 +99,13 @@ public class SimpleMapApp {
         westPanel.setPreferredSize(new Dimension(350,300));
         westPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        westPanel.add(statusPanel);
-        westPanel.add(markaPanel);
-        westPanel.add(buttonsPanel);
+//        westPanel.add(statusPanel);
+//        westPanel.add(markaPanel);
+//        westPanel.add(buttonsPanel);
 
-        MapViewer mapViewer = new MapViewer();
-        mapViewer.setMarker(latitude, longitude);
-        mapViewer.setDisplayCenter(latitude, longitude);
+//        MapViewer mapViewer = new MapViewer();
+//        mapViewer.setMarker(latitude, longitude);
+//        mapViewer.setDisplayCenter(latitude, longitude);
 
 
         DatabaseListPanel databaseListPanel = new DatabaseListPanel();
@@ -121,6 +118,7 @@ public class SimpleMapApp {
 
 
         westPanel.add(databaseListPanel);
+        westPanel.add(buttonsPanel);
 
 
 
@@ -137,13 +135,27 @@ public class SimpleMapApp {
 
         timer.start();
 
+        // Создаем окно для отображения карты
+        JFrame frame = new JFrame("Эра-Глонасс");
+        // помещение иконки на frame
+        ImageIcon icon = new ImageIcon("./resource/icon.png");
+        frame.setIconImage(icon.getImage());
+
+
+        CenterPanel centerPanel = new CenterPanel();
+        centerPanel.add(statusPanel);
+        centerPanel.add(markaPanel);
+
+        SouthPanel southPanel = new SouthPanel();
+
 
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 800);
         frame.getContentPane().add(BorderLayout.NORTH, labelPanel);
         frame.getContentPane().add(BorderLayout.WEST, westPanel);
-        frame.getContentPane().add(BorderLayout.CENTER, mapViewer);
+        frame.getContentPane().add(BorderLayout.CENTER, centerPanel);
+        frame.getContentPane().add(BorderLayout.SOUTH, southPanel);
         frame.setVisible(true);
     }
 
