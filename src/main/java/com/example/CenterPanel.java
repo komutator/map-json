@@ -5,8 +5,9 @@ import java.awt.*;
 public class CenterPanel extends AbstractPanel{
 
     public CenterPanel(){
-        setBorderName("Данные");
-        setPreferredSize(new Dimension(400,400));
+        setBorderName("Данные звонка");
+        setLayout(new BorderLayout());
+//        setPreferredSize(new Dimension(400,400));
     }
 
 

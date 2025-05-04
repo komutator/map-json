@@ -34,13 +34,14 @@ public class DatabaseListPanel extends JPanel {
 
     private void loadDataFromDatabase() {
         try (Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/testdb", "erauser", "erapassword");
-             PreparedStatement stmt = conn.prepareStatement("SELECT id FROM jsondata");
+                "jdbc:mysql://localhost:3306/eradb", "erauser", "erapassword");
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM msd");
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                String name = rs.getString("id");
-                listModel.addElement(name);
+                String element = rs.getString("l_id");
+                element = element + " " + rs.getString("imei");
+                listModel.addElement(element);
             }
 
         } catch (SQLException e) {

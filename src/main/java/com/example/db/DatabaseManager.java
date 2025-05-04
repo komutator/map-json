@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseManager {
-    private static final String URL = "jdbc:mysql://localhost:3306/testdb";
+    private static final String URL = "jdbc:mysql://localhost:3306/eradb";
     private static final String USER = "erauser";
     private static final String PASSWORD = "erapassword";
 

@@ -24,6 +24,8 @@ public class SimpleMapApp {
 
     public static void main(String[] args) {
 
+        LogPanel log = new LogPanel();
+
         // Загружаем конфигурацию программы
 
         ConfigManager config = new ConfigManager("config.ini");
@@ -42,22 +44,6 @@ public class SimpleMapApp {
 
 
 
-//  Подключаемся к БД
-        try {
-            Connection conn = DatabaseManager.getConnection();
-
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM jsondata");
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                System.out.println("Id: " + rs.getString("id") + " Json: " + rs.getString("json"));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            DatabaseManager.closeConnection();
-        }
 
 
         // Читаем координаты из файла test.json
@@ -84,8 +70,8 @@ public class SimpleMapApp {
         statusPanel.setPreferredSize(new Dimension(290,80));
 
         MarkaPanel markaPanel = new MarkaPanel();
-        markaPanel.setBorderName("Марка");
-        markaPanel.setPreferredSize(new Dimension(290,80));
+//        markaPanel.setBorderName("Марка");
+//        markaPanel.setPreferredSize(new Dimension(290,80));
 
         LabelPanel labelPanel = new LabelPanel();
         labelPanel.setPreferredSize(new Dimension(200,30));
@@ -95,9 +81,7 @@ public class SimpleMapApp {
 //        JLabel callLabel = new JLabel("Карточка вызова");
 //        labelPanel.add(callLabel);
 
-        JPanel westPanel = new JPanel();
-        westPanel.setPreferredSize(new Dimension(350,300));
-        westPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        WestPanel westPanel = new WestPanel();
 
 //        westPanel.add(statusPanel);
 //        westPanel.add(markaPanel);
@@ -113,6 +97,7 @@ public class SimpleMapApp {
         // Устанавливаем слушателя выбора
         databaseListPanel.setDatabaseListListener(selectedItem -> {
             System.out.println("🔔 Вы выбрали: " + selectedItem);
+            log.log("INFO","Выбрано измерение " + selectedItem);
             // Здесь можно делать что угодно с выбранной строкой
         });
 
@@ -131,20 +116,37 @@ public class SimpleMapApp {
 
 
         CenterPanel centerPanel = new CenterPanel();
-        centerPanel.add(statusPanel);
-        centerPanel.add(markaPanel);
+        centerPanel.add(BorderLayout.WEST, statusPanel);
+        centerPanel.add(BorderLayout.WEST,markaPanel);
         MapViewer mapViewer = new MapViewer();
         mapViewer.setMarker(latitude, longitude);
         mapViewer.setDisplayCenter(latitude, longitude);
-        centerPanel.add(mapViewer);
+        centerPanel.add(BorderLayout.CENTER,mapViewer);
 
 
 
         SouthPanel southPanel = new SouthPanel();
-        LogPanel log = new LogPanel();
         southPanel.add(log);
-        log.log("Из главного окна");
+        log.log("INFO","Программа запущена");
 
+//  Подключаемся к БД
+        try {
+            Connection conn = DatabaseManager.getConnection();
+
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM msd");
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                System.out.println("Id: " + rs.getString("l_id") + " Json: " + rs.getString("imei"));
+            }
+            log.log("INFO","Подключение к базе установлено");
+
+        } catch (SQLException e) {
+            log.log("ERROR", e.getMessage());
+            e.printStackTrace();
+        } finally {
+            DatabaseManager.closeConnection();
+        }
 
 
         Timer timer = new Timer(1000, new ActionListener() {
@@ -155,7 +157,7 @@ public class SimpleMapApp {
             public void actionPerformed(ActionEvent e) {
                 seconds++;
                 labelPanel.setText("Время: " + seconds + " сек");
-                log.log("Из таймера " + seconds);
+//                log.log("Из таймера " + seconds);
             }
         });
 
