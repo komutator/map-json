@@ -145,6 +145,12 @@ public class SimpleMapApp {
         CenterPanel centerPanel = new CenterPanel();
         centerPanel.add(statusPanel);
         centerPanel.add(markaPanel);
+        MapViewer mapViewer = new MapViewer();
+        mapViewer.setMarker(latitude, longitude);
+        mapViewer.setDisplayCenter(latitude, longitude);
+        centerPanel.add(mapViewer);
+
+
 
         SouthPanel southPanel = new SouthPanel();
 

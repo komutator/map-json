@@ -5,8 +5,7 @@ import java.awt.*;
 public class CenterPanel extends AbstractPanel{
 
     public CenterPanel(){
-        add(new MapViewer());
-        setBorderName("Карта");
+        setBorderName("Данные");
         setPreferredSize(new Dimension(400,400));
     }
 
