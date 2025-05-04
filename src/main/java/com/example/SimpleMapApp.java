@@ -122,18 +122,6 @@ public class SimpleMapApp {
 
 
 
-        Timer timer = new Timer(1000, new ActionListener() {
-
-            int seconds = 0;
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                seconds++;
-                labelPanel.setText("Время: " + seconds + " сек");
-            }
-        });
-
-        timer.start();
 
         // Создаем окно для отображения карты
         JFrame frame = new JFrame("Эра-Глонасс");
@@ -153,6 +141,25 @@ public class SimpleMapApp {
 
 
         SouthPanel southPanel = new SouthPanel();
+        LogPanel log = new LogPanel();
+        southPanel.add(log);
+        log.log("Из главного окна");
+
+
+
+        Timer timer = new Timer(1000, new ActionListener() {
+
+            int seconds = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                seconds++;
+                labelPanel.setText("Время: " + seconds + " сек");
+                log.log("Из таймера " + seconds);
+            }
+        });
+
+        timer.start();
 
 
 
