@@ -8,6 +8,8 @@ import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 
+import net.miginfocom.swing.MigLayout;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -115,14 +117,31 @@ public class SimpleMapApp {
         frame.setIconImage(icon.getImage());
 
 
-        CenterPanel centerPanel = new CenterPanel();
-        centerPanel.add(BorderLayout.WEST,markaPanel);
-        centerPanel.add(BorderLayout.WEST, statusPanel);
-
         MapViewer mapViewer = new MapViewer();
         mapViewer.setMarker(latitude, longitude);
         mapViewer.setDisplayCenter(latitude, longitude);
-        centerPanel.add(BorderLayout.CENTER,mapViewer);
+
+
+        JPanel centerPanel = new JPanel(new MigLayout());
+
+        JPanel myLeftPanel = new JPanel(new MigLayout());
+        myLeftPanel.setBackground(new Color(123));
+        myLeftPanel.setMaximumSize(new Dimension(500,700));
+        JPanel myRightPanel = new JPanel(new MigLayout());
+        myRightPanel.setBackground(new Color(200));
+        myRightPanel.setMaximumSize(new Dimension(500,700));
+
+        myLeftPanel.add(markaPanel, "wrap");
+        myLeftPanel.add(statusPanel);
+        myRightPanel.add(mapViewer);
+
+        centerPanel.add(BorderLayout.WEST, myLeftPanel);
+        centerPanel.add(BorderLayout.EAST, myRightPanel);
+
+//        centerPanel.add(BorderLayout.WEST,markaPanel);
+//        centerPanel.add(BorderLayout.WEST, statusPanel);
+
+//        centerPanel.add(BorderLayout.CENTER,mapViewer);
 
 
 

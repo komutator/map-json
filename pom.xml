@@ -74,6 +74,13 @@
 	</dependency>
 
 
+        <dependency>
+            <groupId>com.miglayout</groupId>
+            <artifactId>miglayout-swing</artifactId>
+            <version>11.4.2</version>
+        </dependency>
+
+
     </dependencies>
 
 

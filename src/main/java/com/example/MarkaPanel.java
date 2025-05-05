@@ -10,7 +10,7 @@ public class MarkaPanel extends AbstractMiniPanel {
 
 //      setPreferredSize(new Dimension(250, 100)); // ширина 200, высота 24 пикселя
 //        setMinimumSize(new Dimension(250, 100));
-        setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+//        setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
 
 
         GridBagConstraints gbc = new GridBagConstraints();
