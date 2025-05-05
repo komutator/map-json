@@ -7,10 +7,10 @@ public class StatusPanel extends AbstractPanel {
         setLayout(new GridLayout(3, 2)); // Две строки, два столбца
 
         add(new JLabel("КСИ:"));
-        add(new JTextField(10));
+        add(new JTextField(5));
 
         add(new JLabel("УСИ:"));
-        add(new JTextField(10));
+        add(new JTextField(5));
 
         add(new JLabel("Наличие голосового сообщения:"));
         JTextField textField = new JTextField("ДА");
