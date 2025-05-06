@@ -74,6 +74,7 @@ public class SimpleMapApp {
         BigPanel bigPanel = new BigPanel();
 
         MarkaPanel markaPanel = new MarkaPanel();
+        MndPanel mndPanel = new MndPanel();
 //        markaPanel.setBorderName("Марка");
 //        markaPanel.setPreferredSize(new Dimension(290,80));
 
@@ -133,9 +134,13 @@ public class SimpleMapApp {
         myRightPanel.setBackground(Color.PINK);
         myRightPanel.setMaximumSize(new Dimension(500,700));
 
+        JButton testButton = new JButton("TEST");
+        myLeftPanel.add(testButton, "wrap");
+
         myLeftPanel.add(markaPanel, "wrap");
         myLeftPanel.add(statusPanel, "wrap");
-        myLeftPanel.add(bigPanel);
+        myLeftPanel.add(bigPanel, "wrap");
+        myLeftPanel.add(mndPanel);
 
         myRightPanel.add(mapViewer);
 
