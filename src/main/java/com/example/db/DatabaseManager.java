@@ -1,39 +1,80 @@
 package com.example.db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import javax.swing.*;
+import java.sql.*;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 public class DatabaseManager {
-    private static final String URL = "jdbc:mysql://localhost:3306/eradb";
-    private static final String USER = "erauser";
-    private static final String PASSWORD = "erapassword";
+    private String url;
+    private String username;
+    private String password;
+    private Connection connection;
 
-    private static Connection connection;
+    public DatabaseManager(String host, int port, String database, String username, String password) {
+        this.url = "jdbc:mysql://" + host + ":" + port + "/" + database;
+        this.username = username;
+        this.password = password;
+    }
 
-    // Метод для получения подключения
-    public static Connection getConnection() throws SQLException {
+    // Открыть соединение
+    public void connect() throws SQLException {
         if (connection == null || connection.isClosed()) {
-            connect();
+            connection = DriverManager.getConnection(url, username, password);
+            System.out.println("Соединение с базой данных установлено.");
         }
-        return connection;
     }
 
-    // Приватный метод для создания подключения
-    private static void connect() throws SQLException {
-        connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        System.out.println("✅ Подключение к базе данных успешно установлено.");
-    }
-
-    // Метод для закрытия подключения
-    public static void closeConnection() {
-        if (connection != null) {
-            try {
+    // Закрыть соединение
+    public void disconnect() {
+        try {
+            if (connection != null && !connection.isClosed()) {
                 connection.close();
-                System.out.println("🔒 Подключение к базе данных закрыто.");
-            } catch (SQLException e) {
-                e.printStackTrace();
+                System.out.println("Соединение с базой данных закрыто.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Чтение всех строк из таблицы
+    public List<String[]> readAll(String tableName) throws SQLException {
+        List<String[]> rows = new ArrayList<>();
+        String sql = "SELECT * FROM " + tableName;
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            int columnCount = rs.getMetaData().getColumnCount();
+            while (rs.next()) {
+                String[] row = new String[columnCount];
+                for (int i = 0; i < columnCount; i++) {
+                    row[i] = rs.getString(i + 1);
+                }
+                rows.add(row);
             }
         }
+        return rows;
+    }
+
+    // Выполнить запрос с возвратом результата
+    public List<String[]> executeQuery(String query) throws SQLException {
+        List<String[]> result = new ArrayList<>();
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            int columnCount = rs.getMetaData().getColumnCount();
+            while (rs.next()) {
+                String[] row = new String[columnCount];
+                for (int i = 0; i < columnCount; i++) {
+                    row[i] = rs.getString(i + 1);
+                }
+                result.add(row);
+            }
+        }
+        return result;
     }
 }
+

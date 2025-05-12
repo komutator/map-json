@@ -7,7 +7,8 @@ import org.json.JSONObject;
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
-
+import java.util.ArrayList;
+import java.util.List;
 import net.miginfocom.swing.MigLayout;
 
 import java.sql.Connection;
@@ -104,6 +105,10 @@ public class SimpleMapApp {
             System.out.println("🔔 Вы выбрали: " + selectedItem);
             log.log("INFO","Выбрано измерение " + selectedItem);
             // Здесь можно делать что угодно с выбранной строкой
+
+//            String s = TextParser.convertToJSON();
+
+
         });
 
 
@@ -160,23 +165,21 @@ public class SimpleMapApp {
 
 //  Подключаемся к БД
         try {
-            Connection conn = DatabaseManager.getConnection();
+            DatabaseManager databaseManager = new DatabaseManager("localhost", 3306, "eradb", "erauser","erapassword");
+            databaseManager.connect();
+            List<String[]>  result = databaseManager.executeQuery("SELECT * FROM msd");
+            log.log("INFO","Выбрано " + result.size() + " значений");
+            log.log("INFO","Выбрано " + result.get(0)[0] + " значение");
 
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM msd");
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                System.out.println("Id: " + rs.getString("l_id") + " Json: " + rs.getString("imei"));
-            }
+//            while (rs.next()) {
+//                System.out.println("Id: " + rs.getString("l_id") + " Json: " + rs.getString("imei"));
+//            }
             log.log("INFO","Подключение к базе установлено");
 
         } catch (SQLException e) {
             log.log("ERROR", e.getMessage());
             e.printStackTrace();
-        } finally {
-            DatabaseManager.closeConnection();
         }
-
 
         Timer timer = new Timer(1000, new ActionListener() {
 
