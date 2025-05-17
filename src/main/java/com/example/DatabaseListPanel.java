@@ -14,18 +14,27 @@ public class DatabaseListPanel extends JPanel {
     private JButton upButton, downButton;
     private DatabaseListListener listener; // Сообщает наверх о перемещениях по списку!
     private DatabaseManager databaseManager;
+    private double longitude;
+    private double latitude;
+    // todo: сделать чтобы модель считывалась в список:
+    private List<String[]> databaseValues;
+
+
 
     public DatabaseListPanel(DatabaseManager db) {
         databaseManager = db;
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(350,700));
         listModel = new DefaultListModel<>();
+        databaseValues = new ArrayList<>();
         jList = new JList<>(listModel);
         JScrollPane scrollPane = new JScrollPane(jList);
 
         JPanel buttonPanel = new JPanel();
         upButton = new JButton("Вверх");
         downButton = new JButton("Вниз");
+
+
 
         buttonPanel.add(upButton);
         buttonPanel.add(downButton);
@@ -49,7 +58,9 @@ public class DatabaseListPanel extends JPanel {
             result = databaseManager.executeQuery("SELECT * FROM msd");
             for(String[] s : result){
                 listModel.addElement(s[0] + "  " + s[17] + " " + s[5] );
+                databaseValues.add(s);
             }
+            System.out.println("Добавлено " + databaseValues.size() + " элементов в databaseValues");
         }
 
         catch (SQLException e) {
@@ -69,6 +80,7 @@ public class DatabaseListPanel extends JPanel {
         if (newIndex >= 0 && newIndex < listModel.size()) {
             jList.setSelectedIndex(newIndex);
             jList.ensureIndexIsVisible(newIndex);
+            System.out.println("Выбран " + newIndex + "элемент списка");
         }
     }
 
@@ -85,4 +97,21 @@ public class DatabaseListPanel extends JPanel {
     public void setDatabaseListListener(DatabaseListListener listener) {
         this.listener = listener;
     }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public int getCurrentSelectedIndex() {
+        return jList.getSelectedIndex();
+    }
+
+    public String[] getCurrentSelectedValues(){
+        int sel;
+        sel = jList.getSelectedIndex();
+        String[] zz = databaseValues.get(sel);
+        return zz;
+    }
+
+
 }

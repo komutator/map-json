@@ -22,7 +22,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
+// todo: Подключить тесты
 public class SimpleMapApp {
 
     public static void main(String[] args) {
@@ -116,17 +116,22 @@ public class SimpleMapApp {
 //        mapViewer.setMarker(latitude, longitude);
 //        mapViewer.setDisplayCenter(latitude, longitude);
 
+        MapViewer mapViewer = new MapViewer();
+        mapViewer.setMarker(latitude, longitude);
+        mapViewer.setDisplayCenter(latitude, longitude);
+
+
 
         DatabaseListPanel databaseListPanel = new DatabaseListPanel(databaseManager);
 
-        // Устанавливаем слушателя выбора
+        // Устанавливаем слушателя выбора ActionListener
         databaseListPanel.setDatabaseListListener(selectedItem -> {
             System.out.println("🔔 Вы выбрали: " + selectedItem);
             log.log("INFO","Выбрано измерение " + selectedItem);
             // Здесь можно делать что угодно с выбранной строкой
 
 //            String s = TextParser.convertToJSON();
-
+//            mapViewer.setDisplayCenter(databaseListPanel.getLongitude());
 
         });
 
@@ -144,9 +149,6 @@ public class SimpleMapApp {
         frame.setIconImage(icon.getImage());
 
 
-        MapViewer mapViewer = new MapViewer();
-        mapViewer.setMarker(latitude, longitude);
-        mapViewer.setDisplayCenter(latitude, longitude);
 
 
         JPanel centerPanel = new JPanel(new MigLayout());
@@ -165,6 +167,10 @@ public class SimpleMapApp {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Кнопка нажата!");
                 log.log("INFO", "Кнопка TEST BUTTON нажата");
+                log.log("INFO", "Выбран " + databaseListPanel.getCurrentSelectedIndex() + " элемент списка");
+//                log.log("INFO", "Выбраны " + databaseListPanel.getCurrentSelectedValues()[databaseListPanel.getCurrentSelectedIndex()] + " строки");
+
+
 
             }
         });
