@@ -158,7 +158,19 @@ public class SimpleMapApp {
         myRightPanel.setBackground(Color.PINK);
         myRightPanel.setMaximumSize(new Dimension(500,700));
 
-        JButton testButton = new JButton("TEST");
+        JButton testButton = new JButton("TEST BUTTON");
+
+        testButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Кнопка нажата!");
+                log.log("INFO", "Кнопка TEST BUTTON нажата");
+
+            }
+        });
+
+
+
         myLeftPanel.add(testButton, "wrap");
 
         myLeftPanel.add(markaPanel, "wrap");

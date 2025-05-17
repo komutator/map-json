@@ -1,5 +1,6 @@
 C:\work\maxim_json1\src\main\java\com\example\AbstractMiniPanel.java
 C:\work\maxim_json1\src\main\java\com\example\AbstractPanel.java
+C:\work\maxim_json1\src\main\java\com\example\BigPanel.java
 C:\work\maxim_json1\src\main\java\com\example\ButtonsPanel.java
 C:\work\maxim_json1\src\main\java\com\example\CenterPanel.java
 C:\work\maxim_json1\src\main\java\com\example\ConfigManager\ConfigManager.java
@@ -11,9 +12,11 @@ C:\work\maxim_json1\src\main\java\com\example\LogPanel.java
 C:\work\maxim_json1\src\main\java\com\example\MainTimer.java
 C:\work\maxim_json1\src\main\java\com\example\MapViewer.java
 C:\work\maxim_json1\src\main\java\com\example\MarkaPanel.java
-C:\work\maxim_json1\src\main\java\com\example\MigLayout.java
+C:\work\maxim_json1\src\main\java\com\example\MndPanel.java
+C:\work\maxim_json1\src\main\java\com\example\MyMigLayout.java
 C:\work\maxim_json1\src\main\java\com\example\OpenSkyLiveTracker.java
 C:\work\maxim_json1\src\main\java\com\example\SimpleMapApp.java
 C:\work\maxim_json1\src\main\java\com\example\SouthPanel.java
 C:\work\maxim_json1\src\main\java\com\example\StatusPanel.java
+C:\work\maxim_json1\src\main\java\com\example\TextParser.java
 C:\work\maxim_json1\src\main\java\com\example\WestPanel.java

@@ -41,14 +41,14 @@ public class DatabaseListPanel extends JPanel {
     //todo: Задействовать DatabaseManager
     private void loadDataFromDatabase() {
 //      SELECT `l_id`, `case_id`, `imsi`, `imei`, `msisdn`, `channel`, `msd_from`, `msd_to`, `is_valid`, `version`, `has_egts`, `pos_lat`, `pos_long`, `hex_raw`, `msd_len`, `msd_decoded`, `json`, `tm`, `ecs`, `err_text`, `err_len`, `rssi`
-//      SELECT  0           1        2       3        4         5          6           7         8           9
+//      SELECT  0           1        2       3        4         5          6           7         8           9          10          11         12         13         14           15           16     17    18      19          20         21
 
         try {
 
             List<String[]> result = new ArrayList<>();
             result = databaseManager.executeQuery("SELECT * FROM msd");
             for(String[] s : result){
-                listModel.addElement(s[0] + " " + s[5]);
+                listModel.addElement(s[0] + "  " + s[17] + " " + s[5] );
             }
         }
 

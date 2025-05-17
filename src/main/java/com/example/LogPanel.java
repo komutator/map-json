@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import javax.swing.text.*;
-
+// todo: Сделать лог-панель растягивающейся
 public class LogPanel extends JPanel{
 //
 //    private JTextArea logText;
