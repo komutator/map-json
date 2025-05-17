@@ -26,7 +26,6 @@ import java.nio.file.Paths;
 public class SimpleMapApp {
 
     public static void main(String[] args) {
-
         LogPanel log = new LogPanel();
 
         // Загружаем конфигурацию программы
@@ -46,6 +45,26 @@ public class SimpleMapApp {
 //        System.out.println("Новое значение myid сохранено.");
 
 
+//  Подключаемся к БД
+        DatabaseManager databaseManager = new DatabaseManager("localhost", 3306, "eradb", "erauser","erapassword");
+
+
+        try {
+            databaseManager.connect();
+            List<String[]>  result = databaseManager.executeQuery("SELECT * FROM msd");
+            log.log("INFO","Выбрано " + result.size() + " значений");
+            log.log("INFO","Выбрано " + result.get(0)[0] + " значение");
+
+//            while (rs.next()) {
+//                System.out.println("Id: " + rs.getString("l_id") + " Json: " + rs.getString("imei"));
+//            }
+            log.log("INFO","Подключение к базе установлено");
+
+
+        } catch (SQLException e) {
+            log.log("ERROR", e.getMessage());
+            e.printStackTrace();
+        }
 
 
 
@@ -98,7 +117,7 @@ public class SimpleMapApp {
 //        mapViewer.setDisplayCenter(latitude, longitude);
 
 
-        DatabaseListPanel databaseListPanel = new DatabaseListPanel();
+        DatabaseListPanel databaseListPanel = new DatabaseListPanel(databaseManager);
 
         // Устанавливаем слушателя выбора
         databaseListPanel.setDatabaseListListener(selectedItem -> {
@@ -163,23 +182,6 @@ public class SimpleMapApp {
         southPanel.add(log);
         log.log("INFO","Программа запущена");
 
-//  Подключаемся к БД
-        try {
-            DatabaseManager databaseManager = new DatabaseManager("localhost", 3306, "eradb", "erauser","erapassword");
-            databaseManager.connect();
-            List<String[]>  result = databaseManager.executeQuery("SELECT * FROM msd");
-            log.log("INFO","Выбрано " + result.size() + " значений");
-            log.log("INFO","Выбрано " + result.get(0)[0] + " значение");
-
-//            while (rs.next()) {
-//                System.out.println("Id: " + rs.getString("l_id") + " Json: " + rs.getString("imei"));
-//            }
-            log.log("INFO","Подключение к базе установлено");
-
-        } catch (SQLException e) {
-            log.log("ERROR", e.getMessage());
-            e.printStackTrace();
-        }
 
         Timer timer = new Timer(1000, new ActionListener() {
 
