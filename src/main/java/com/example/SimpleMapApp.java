@@ -128,6 +128,16 @@ public class SimpleMapApp {
         databaseListPanel.setDatabaseListListener(selectedItem -> {
             System.out.println("🔔 Вы выбрали: " + selectedItem);
             log.log("INFO","Выбрано измерение " + selectedItem);
+
+
+            Integer element_num = databaseListPanel.getCurrentSelectedIndex();
+            log.log("INFO", "Выбран " + element_num + " элемент списка");
+            MsdObject m = databaseListPanel.msdObject.get(element_num);
+            log.log("INFO", "Координаты:" + m.pos_lat + " " + m.pos_long);
+            mapViewer.setDisplayCenter(m.pos_lat/10_000_000.0, m.pos_long/10_000_000.0);
+            mapViewer.setMarker(m.pos_lat/10_000_000.0, m.pos_long/10_000_000.0);
+
+
             // Здесь можно делать что угодно с выбранной строкой
 
 //            String s = TextParser.convertToJSON();
