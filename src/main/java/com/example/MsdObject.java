@@ -6,11 +6,14 @@ package com.example;
 //      SELECT  0           1        2       3        4         5          6           7         8           9          10          11         12         13         14           15           16     17    18      19          20         21
 
 
+import java.sql.Timestamp;
+
 public class MsdObject {
 
     public int l_id;
     public int case_id;
     public String imsi;
+    public String imei;
     public String msisdn;
     public String channel;
     public String msd_from;
@@ -24,7 +27,7 @@ public class MsdObject {
     public int msd_len;
     public String msd_decoded;
     public String json;
-    public long tm;
+    public Timestamp tm;
     public String ecs;
     public String err_text;
     public int err_len;

@@ -18,11 +18,12 @@ public class DatabaseListPanel extends JPanel {
     private double latitude;
     // todo: сделать чтобы модель считывалась в список:
     private List<String[]> databaseValues;
-
+    public ArrayList<MsdObject> msdObject;
 
 
     public DatabaseListPanel(DatabaseManager db) {
         databaseManager = db;
+        msdObject = new ArrayList<>();
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(350,700));
         listModel = new DefaultListModel<>();
@@ -56,9 +57,42 @@ public class DatabaseListPanel extends JPanel {
 
             List<String[]> result = new ArrayList<>();
             result = databaseManager.executeQuery("SELECT * FROM msd");
+
             for(String[] s : result){
                 listModel.addElement(s[0] + "  " + s[17] + " " + s[5] );
                 databaseValues.add(s);
+
+                MsdObject msd = new MsdObject();
+                msd.l_id = Integer.parseInt(s[0]);
+                msd.case_id = Integer.parseInt(s[1]);
+                msd.imsi = s[2];
+                msd.imei = s[3];
+                msd.msisdn = s[4];
+                msd.channel = s[5];
+                msd.msd_from = s[6];
+                msd.msd_to = s[7];
+                msd.is_valid = Integer.parseInt(s[8]);
+                msd.version = Integer.parseInt(s[9]);
+                msd.has_egts = Integer.parseInt(s[10]);
+                msd.pos_lat = Long.parseLong(s[11]);
+                msd.pos_long = Long.parseLong(s[12]);
+                msd.hex_raw = s[13];
+                msd.msd_len = Integer.parseInt(s[14]);
+                msd.msd_decoded = s[15];
+                msd.json = s[16];
+
+                String dateTimeString = s[17];
+                Timestamp timestamp = Timestamp.valueOf(dateTimeString);
+                msd.tm = timestamp;
+                msd.ecs = s[18];
+                msd.err_text = s[19];
+                msd.err_len = Integer.parseInt(s[20]);
+                msd.rssi = s[21];
+
+                msdObject.add(msd);
+
+
+
             }
             System.out.println("Добавлено " + databaseValues.size() + " элементов в databaseValues");
         }

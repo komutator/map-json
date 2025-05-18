@@ -166,10 +166,15 @@ public class SimpleMapApp {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Кнопка нажата!");
+
+                Integer element_num = databaseListPanel.getCurrentSelectedIndex();
                 log.log("INFO", "Кнопка TEST BUTTON нажата");
-                log.log("INFO", "Выбран " + databaseListPanel.getCurrentSelectedIndex() + " элемент списка");
+                log.log("INFO", "Выбран " + element_num + " элемент списка");
 //                log.log("INFO", "Выбраны " + databaseListPanel.getCurrentSelectedValues()[databaseListPanel.getCurrentSelectedIndex()] + " строки");
 
+
+                MsdObject m = databaseListPanel.msdObject.get(element_num);
+                log.log("INFO", "Выбрана широта " + m.pos_lat + " и долгота " + m.pos_long);
 
 
             }
