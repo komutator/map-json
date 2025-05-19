@@ -125,7 +125,7 @@ public class SimpleMapApp {
 
         DatabaseListPanel databaseListPanel = new DatabaseListPanel(databaseManager);
 
-        // Устанавливаем слушателя выбора ActionListener
+        // Устанавливаем слушателя выбора ActionListener на изменение выбранного DatabasePanel
         databaseListPanel.setDatabaseListListener(selectedItem -> {
             System.out.println("🔔 Вы выбрали: " + selectedItem);
             log.log("INFO","Выбрано измерение " + selectedItem);
@@ -137,6 +137,12 @@ public class SimpleMapApp {
             log.log("INFO", "Координаты:" + m.pos_lat + " " + m.pos_long);
             mapViewer.setDisplayCenter(m.pos_lat/10_000_000.0, m.pos_long/10_000_000.0);
             mapViewer.setMarker(m.pos_lat/10_000_000.0, m.pos_long/10_000_000.0);
+
+
+
+            bigPanel.fields.get(0).value = String.valueOf(m.pos_lat);
+            bigPanel.UpdateFields();
+
 
 
             // Здесь можно делать что угодно с выбранной строкой
@@ -172,7 +178,7 @@ public class SimpleMapApp {
         myRightPanel.setMaximumSize(new Dimension(500,700));
 
         JButton testButton = new JButton("TEST BUTTON");
-
+        // Установка ActionListener на кнопку TEST BUTTON
         testButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -186,6 +192,11 @@ public class SimpleMapApp {
 
                 MsdObject m = databaseListPanel.msdObject.get(element_num);
                 log.log("INFO", "Выбрана широта " + m.pos_lat + " и долгота " + m.pos_long);
+
+                bigPanel.fields.get(0).value = String.valueOf(m.pos_lat);
+                bigPanel.UpdateFields();
+//                bigPanel.invalidate();
+//                bigPanel.repaint();
 
 
             }

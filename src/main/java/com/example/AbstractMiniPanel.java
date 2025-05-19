@@ -6,11 +6,25 @@ import java.awt.*;
 public class AbstractMiniPanel extends AbstractPanel {
     public AbstractMiniPanel() {
         setLayout(new GridBagLayout());
-
-//        addField(this, gbc, 0, "Название:");
-//        addField(this, gbc, 1, "Описание:");
-//        addField(this, gbc, 2, "Автор:");
     }
+
+    public static void addValue(JPanel panel, GridBagConstraints gbc, int yPos, String editText) {
+        gbc.gridy = yPos;
+
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.HORIZONTAL; // только ширина
+        gbc.weightx = 1.0;
+        gbc.weighty = 0; // важно!
+
+        JTextField textField = new JTextField();
+        textField.setPreferredSize(new Dimension(200, 24)); // фиксируем высоту
+        textField.setEditable(false);
+        textField.setText(editText);
+        panel.add(textField, gbc);
+
+    }
+
 
     public static void addField(JPanel panel, GridBagConstraints gbc, int yPos, String labelText, String editText) {
 //        gbc.gridx = 0; // колонка 0
