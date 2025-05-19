@@ -46,6 +46,7 @@ public class SimpleMapApp {
 
 
 //  Подключаемся к БД
+        // todo: добавить MeggageBox об ошибке доступа в базу
         DatabaseManager databaseManager = new DatabaseManager("localhost", 3306, "eradb", "erauser","erapassword");
 
 

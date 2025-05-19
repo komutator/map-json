@@ -1,7 +1,7 @@
 package com.example;
 import java.awt.*;
 import javax.swing.*;
-
+// todo: сделать доступными снаружи поля Edit
 public class MarkaPanel extends AbstractMiniPanel {
     public MarkaPanel() {
 
