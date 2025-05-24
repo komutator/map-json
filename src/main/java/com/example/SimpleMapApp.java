@@ -139,9 +139,10 @@ public class SimpleMapApp {
             mapViewer.setMarker(m.pos_lat/10_000_000.0, m.pos_long/10_000_000.0);
 
 
-
-            bigPanel.fields.get(0).value = String.valueOf(m.pos_lat);
-            bigPanel.UpdateFields();
+            bigPanel.panelItems.get(0).textField.setText(String.valueOf(m.pos_lat));
+//
+//            bigPanel.fields.get(0).value = String.valueOf(m.pos_lat);
+//            bigPanel.UpdateFields();
 
 
 
@@ -193,8 +194,11 @@ public class SimpleMapApp {
                 MsdObject m = databaseListPanel.msdObject.get(element_num);
                 log.log("INFO", "Выбрана широта " + m.pos_lat + " и долгота " + m.pos_long);
 
-                bigPanel.fields.get(0).value = String.valueOf(m.pos_lat);
-                bigPanel.UpdateFields();
+//                bigPanel.fields.get(0).value = String.valueOf(m.pos_lat);
+//                bigPanel.UpdateFields();
+
+                bigPanel.panelItems.get(0).textField.setText(String.valueOf(m.pos_lat));
+
 //                bigPanel.invalidate();
 //                bigPanel.repaint();
 

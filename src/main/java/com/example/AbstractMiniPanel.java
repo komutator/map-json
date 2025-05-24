@@ -2,10 +2,31 @@ package com.example;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class AbstractMiniPanel extends AbstractPanel {
+
+    public class PanelItem{
+        String labelText;
+        String valueText;
+        JLabel label;
+        JTextField textField;
+
+        public PanelItem(){
+            labelText = "";
+            valueText = "";
+            label = new JLabel("");
+            textField = new JTextField("");
+        }
+
+
+    }
+
+    public ArrayList<PanelItem> panelItems;
+
     public AbstractMiniPanel() {
         setLayout(new GridBagLayout());
+        panelItems = new ArrayList<>();
     }
 
     public static void addValue(JPanel panel, GridBagConstraints gbc, int yPos, String editText) {
@@ -17,6 +38,8 @@ public class AbstractMiniPanel extends AbstractPanel {
         gbc.weightx = 1.0;
         gbc.weighty = 0; // важно!
 
+
+
         JTextField textField = new JTextField();
         textField.setPreferredSize(new Dimension(200, 24)); // фиксируем высоту
         textField.setEditable(false);
@@ -26,7 +49,7 @@ public class AbstractMiniPanel extends AbstractPanel {
     }
 
 
-    public static void addField(JPanel panel, GridBagConstraints gbc, int yPos, String labelText, String editText) {
+    public void addField(JPanel panel, GridBagConstraints gbc, int yPos, String labelText, String editText) {
 //        gbc.gridx = 0; // колонка 0
 //        gbc.gridy = yPos; // строка yPos
 //        gbc.anchor = GridBagConstraints.EAST; // выравнивание метки вправо
@@ -48,8 +71,12 @@ public class AbstractMiniPanel extends AbstractPanel {
         gbc.weightx = 0;
         gbc.weighty = 0;
 
-        JLabel label = new JLabel(labelText);
-        panel.add(label, gbc);
+
+        PanelItem p = new PanelItem();
+        p.labelText = labelText;
+        p.textField.setText(editText);
+
+        panel.add(p.label, gbc);
 
         gbc.gridx = 1;
         gbc.anchor = GridBagConstraints.WEST;
@@ -57,11 +84,14 @@ public class AbstractMiniPanel extends AbstractPanel {
         gbc.weightx = 1.0;
         gbc.weighty = 0; // важно!
 
-        JTextField textField = new JTextField();
-        textField.setPreferredSize(new Dimension(200, 24)); // фиксируем высоту
-        textField.setEditable(false);
-        textField.setText(editText);
-        panel.add(textField, gbc);
+
+        p.textField.setPreferredSize(new Dimension(200, 24)); // фиксируем высоту
+        p.textField.setEditable(false);
+        p.textField.setText(editText);
+        panel.add(p.textField, gbc);
+
+        panelItems.add(p);
+
 
     }
 
