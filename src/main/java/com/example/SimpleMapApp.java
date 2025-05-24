@@ -134,9 +134,12 @@ public class SimpleMapApp {
             Integer element_num = databaseListPanel.getCurrentSelectedIndex();
             log.log("INFO", "Выбран " + element_num + " элемент списка");
             MsdObject m = databaseListPanel.msdObject.get(element_num);
-            log.log("INFO", "Координаты:" + m.pos_lat + " " + m.pos_long);
-            mapViewer.setDisplayCenter(m.pos_lat/10_000_000.0, m.pos_long/10_000_000.0);
-            mapViewer.setMarker(m.pos_lat/10_000_000.0, m.pos_long/10_000_000.0);
+
+            double lat = m.pos_lat * 90/Math.pow(2,28);
+            double lon = m.pos_long * 180/Math.pow(2,28);
+            log.log("INFO", "Координаты:" + lat + " " + lon);
+            mapViewer.setDisplayCenter(lat, lon);
+            mapViewer.setMarker(lat,lon);
 
 
             bigPanel.panelItems.get(0).textField.setText(String.valueOf(m.pos_lat));

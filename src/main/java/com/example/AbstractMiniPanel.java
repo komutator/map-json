@@ -74,6 +74,7 @@ public class AbstractMiniPanel extends AbstractPanel {
 
         PanelItem p = new PanelItem();
         p.labelText = labelText;
+        p.label.setText(labelText);
         p.textField.setText(editText);
 
         panel.add(p.label, gbc);
