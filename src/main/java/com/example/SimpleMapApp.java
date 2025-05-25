@@ -135,14 +135,15 @@ public class SimpleMapApp {
             log.log("INFO", "Выбран " + element_num + " элемент списка");
             MsdObject m = databaseListPanel.msdObject.get(element_num);
 
-            double lat = m.pos_lat * 90/Math.pow(2,28);
-            double lon = m.pos_long * 180/Math.pow(2,28);
+            double lat = HexToPos.HexToLat(m.pos_lat);
+            double lon = HexToPos.HexToLon(m.pos_long);
             log.log("INFO", "Координаты:" + lat + " " + lon);
             mapViewer.setDisplayCenter(lat, lon);
             mapViewer.setMarker(lat,lon);
 
 
-            bigPanel.panelItems.get(0).textField.setText(String.valueOf(m.pos_lat));
+            bigPanel.panelItems.get(0).textField.setText(String.valueOf("НЕ ОПРЕДЕЛЕН 00"));
+            bigPanel.panelItems.get(9).textField.setText(String.valueOf(m.tm));
 //
 //            bigPanel.fields.get(0).value = String.valueOf(m.pos_lat);
 //            bigPanel.UpdateFields();
