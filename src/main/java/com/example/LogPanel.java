@@ -35,6 +35,7 @@ public class LogPanel extends JPanel{
 //        logArea.setEditable(false);               // Запретить редактирование пользователем
 //        logArea.setLineWrap(true);                 // Перенос строк
 //        logArea.setWrapStyleWord(true);
+        setLayout(new BorderLayout());
 
         logArea = new JTextPane();
         logArea.setEditable(false);
@@ -48,20 +49,20 @@ public class LogPanel extends JPanel{
 
         Dimension fixedSize = new Dimension(width, height);
 
-        logArea.setPreferredSize(fixedSize);
-        logArea.setMinimumSize(fixedSize);
-        logArea.setMaximumSize(fixedSize);
+//        logArea.setPreferredSize(fixedSize);
+//        logArea.setMinimumSize(fixedSize);
+//        logArea.setMaximumSize(fixedSize);
 
 
         JScrollPane scrollPane = new JScrollPane(logArea);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        add(scrollPane);
 
 
         // Также фиксируем размер скролл-панели
         scrollPane.setPreferredSize(fixedSize);
         scrollPane.setMinimumSize(fixedSize);
         scrollPane.setMaximumSize(fixedSize);
+        add(scrollPane);
 
         // Для примера: сразу выводим тестовые логи
 //        log("Программа запущена.");
