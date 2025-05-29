@@ -117,9 +117,9 @@ public class SimpleMapApp {
 //        mapViewer.setMarker(latitude, longitude);
 //        mapViewer.setDisplayCenter(latitude, longitude);
 
-        MapViewer mapViewer = new MapViewer();
-        mapViewer.setMarker(latitude, longitude);
-        mapViewer.setDisplayCenter(latitude, longitude);
+        MapPanel mapPanel = new MapPanel();
+        mapPanel.map.setMarker(latitude, longitude);
+        mapPanel.map.setDisplayCenter(latitude, longitude);
 
 
 
@@ -138,8 +138,9 @@ public class SimpleMapApp {
             double lat = HexToPos.HexToLat(m.pos_lat);
             double lon = HexToPos.HexToLon(m.pos_long);
             log.log("INFO", "Координаты:" + lat + " " + lon);
-            mapViewer.setDisplayCenter(lat, lon);
-            mapViewer.setMarker(lat,lon);
+// todo: эту конструкцию заменить на mapPanel.CenterMarker
+            mapPanel.map.setDisplayCenter(lat, lon);
+            mapPanel.map.setMarker(lat,lon);
 
 
             bigPanel.panelItems.get(0).textField.setText(String.valueOf("НЕ ОПРЕДЕЛЕН 00"));
@@ -178,9 +179,10 @@ public class SimpleMapApp {
         JPanel myLeftPanel = new JPanel(new MigLayout());
         myLeftPanel.setBackground(Color.YELLOW);
         myLeftPanel.setMaximumSize(new Dimension(500,900));
+//        JPanel myRightPanel = new JPanel(new MigLayout());
         JPanel myRightPanel = new JPanel(new MigLayout());
         myRightPanel.setBackground(Color.PINK);
-        myRightPanel.setMaximumSize(new Dimension(500,700));
+        //myRightPanel.setMaximumSize(new Dimension(500,700));
 
         JButton testButton = new JButton("TEST BUTTON");
         // Установка ActionListener на кнопку TEST BUTTON
@@ -214,12 +216,12 @@ public class SimpleMapApp {
 
         myLeftPanel.add(testButton, "wrap");
 
-        myLeftPanel.add(markaPanel, "wrap");
-        myLeftPanel.add(statusPanel, "wrap");
+//        myLeftPanel.add(markaPanel, "wrap");
+//        myLeftPanel.add(statusPanel, "wrap");
         myLeftPanel.add(bigPanel, "wrap");
         myLeftPanel.add(mndPanel);
 
-        myRightPanel.add(mapViewer);
+        myRightPanel.add(mapPanel);
 
         centerPanel.add(BorderLayout.WEST, myLeftPanel);
         centerPanel.add(BorderLayout.EAST, myRightPanel);
