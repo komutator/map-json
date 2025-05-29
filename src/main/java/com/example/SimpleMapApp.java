@@ -118,10 +118,7 @@ public class SimpleMapApp {
 //        mapViewer.setDisplayCenter(latitude, longitude);
 
         MapPanel mapPanel = new MapPanel();
-        mapPanel.map.setMarker(latitude, longitude);
-        mapPanel.map.setDisplayCenter(latitude, longitude);
-
-
+        mapPanel.map.setPosition(latitude, longitude);
 
         DatabaseListPanel databaseListPanel = new DatabaseListPanel(databaseManager);
 
@@ -139,8 +136,7 @@ public class SimpleMapApp {
             double lon = HexToPos.HexToLon(m.pos_long);
             log.log("INFO", "Координаты:" + lat + " " + lon);
 // todo: эту конструкцию заменить на mapPanel.CenterMarker
-            mapPanel.map.setDisplayCenter(lat, lon);
-            mapPanel.map.setMarker(lat,lon);
+            mapPanel.map.setPosition(lat, lon);
 
 
             bigPanel.panelItems.get(0).textField.setText(String.valueOf("НЕ ОПРЕДЕЛЕН 00"));
@@ -180,8 +176,10 @@ public class SimpleMapApp {
         myLeftPanel.setBackground(Color.YELLOW);
         myLeftPanel.setMaximumSize(new Dimension(500,900));
 //        JPanel myRightPanel = new JPanel(new MigLayout());
-        JPanel myRightPanel = new JPanel(new MigLayout());
+        JPanel myRightPanel = new JPanel(new MigLayout("fill", "", ""));
+
         myRightPanel.setBackground(Color.PINK);
+
         //myRightPanel.setMaximumSize(new Dimension(500,700));
 
         JButton testButton = new JButton("TEST BUTTON");
@@ -221,7 +219,7 @@ public class SimpleMapApp {
         myLeftPanel.add(bigPanel, "wrap");
         myLeftPanel.add(mndPanel);
 
-        myRightPanel.add(mapPanel);
+        myRightPanel.add(mapPanel, "grow, push");
 
         centerPanel.add(BorderLayout.WEST, myLeftPanel);
         centerPanel.add(BorderLayout.EAST, myRightPanel);
