@@ -139,6 +139,18 @@ public class SimpleMapApp {
             mapPanel.map.setPosition(lat, lon);
 
 
+            // todo: Запускать в отдельном потоке
+
+            //            try {
+//                String city = ReverseGeocoder.getNearestCity(lat, lon);
+//                log.log("INFO", city);
+//                System.out.println("Ближайший город: " + city);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+
+
+
             bigPanel.panelItems.get(0).textField.setText(String.valueOf("НЕ ОПРЕДЕЛЕН 00"));
             bigPanel.panelItems.get(9).textField.setText(String.valueOf(m.tm));
 //
@@ -179,6 +191,8 @@ public class SimpleMapApp {
         JPanel myRightPanel = new JPanel(new MigLayout("fill", "", ""));
 
         myRightPanel.setBackground(Color.PINK);
+        Dimension d = new Dimension(800,500);
+        myRightPanel.setPreferredSize(d);
 
         //myRightPanel.setMaximumSize(new Dimension(500,700));
 

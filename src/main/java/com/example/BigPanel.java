@@ -21,7 +21,7 @@ public class BigPanel extends AbstractMiniPanel{
     GridBagConstraints gbc;
 
     public BigPanel(){
-
+        setBorderName("Данные МНД");
         fields = new ArrayList<>();
 
         gbc = new GridBagConstraints();
