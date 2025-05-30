@@ -141,13 +141,13 @@ public class SimpleMapApp {
 
             // todo: Запускать в отдельном потоке
 
-            //            try {
-//                String city = ReverseGeocoder.getNearestCity(lat, lon);
-//                log.log("INFO", city);
-//                System.out.println("Ближайший город: " + city);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
+            try {
+                String city = ReverseGeocoder.getNearestCity(lat, lon);
+                log.log("INFO", city);
+                System.out.println("Ближайший город: " + city);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
 
 

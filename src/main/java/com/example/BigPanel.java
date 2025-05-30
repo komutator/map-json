@@ -22,6 +22,8 @@ public class BigPanel extends AbstractMiniPanel{
 
     public BigPanel(){
         setBorderName("Данные МНД");
+        Dimension d = new Dimension(450,500);
+        setMinimumSize(d);
         fields = new ArrayList<>();
 
         gbc = new GridBagConstraints();
