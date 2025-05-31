@@ -36,7 +36,6 @@ public class DatabaseListPanel extends JPanel {
         downButton = new JButton("Вниз");
 
 
-
         buttonPanel.add(upButton);
         buttonPanel.add(downButton);
 
@@ -138,6 +137,9 @@ public class DatabaseListPanel extends JPanel {
 
     public int getCurrentSelectedIndex() {
         return jList.getSelectedIndex();
+    }
+    public void selectItem(int index) {
+        jList.setSelectedIndex(index);
     }
 
     public String[] getCurrentSelectedValues(){

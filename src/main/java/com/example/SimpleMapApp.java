@@ -173,6 +173,7 @@ public class SimpleMapApp {
 
 
         westPanel.add(databaseListPanel);
+        databaseListPanel.selectItem(0);
         westPanel.add(buttonsPanel);
 
 
