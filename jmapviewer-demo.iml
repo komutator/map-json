@@ -7,6 +7,10 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java/com" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java/com/example" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java/com/example/com" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java/com/example/com/example" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java/com/example/com/example/db" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java/com/example/db" isTestSource="true" />
     </content>
   </component>
 </module>

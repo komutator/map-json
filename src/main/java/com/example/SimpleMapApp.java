@@ -137,6 +137,7 @@ public class SimpleMapApp {
             log.log("INFO", "Координаты:" + lat + " " + lon);
 // todo: эту конструкцию заменить на mapPanel.CenterMarker
             mapPanel.map.setPosition(lat, lon);
+            mapPanel.setBorderName("Координаты: " + String.format("%.6f", lat) + " " + String.format("%.6f", lon));
 
 
             // todo: Запускать в отдельном потоке
