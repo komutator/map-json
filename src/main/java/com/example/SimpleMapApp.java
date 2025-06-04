@@ -25,7 +25,8 @@ import java.nio.file.Paths;
 // todo: Подключить тесты
 public class SimpleMapApp {
 
-    public static void main(String[] args) {
+
+    public static void initMainWindow(){
         LogPanel log = new LogPanel();
 
         // Загружаем конфигурацию программы
@@ -280,6 +281,15 @@ public class SimpleMapApp {
         frame.getContentPane().add(BorderLayout.CENTER, centerPanel);
         frame.getContentPane().add(BorderLayout.SOUTH, southPanel);
         frame.setVisible(true);
+
+    }
+
+    public static void main(String[] args) {
+
+        SwingUtilities.invokeLater(() -> {
+            initMainWindow();
+        });
+
     }
 
     // Метод для чтения содержимого файла в строку

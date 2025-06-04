@@ -25,6 +25,8 @@ public class BigPanel extends AbstractMiniPanel{
         Dimension d = new Dimension(450,500);
         setMinimumSize(d);
         fields = new ArrayList<>();
+//        Dimension d = new Dimension(900, 800);
+//        this.setMaximumSize(d);
 
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5); // Отступы между элементами
