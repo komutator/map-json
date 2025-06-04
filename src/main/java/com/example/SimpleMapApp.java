@@ -222,7 +222,7 @@ public class SimpleMapApp {
 
 //                bigPanel.fields.get(0).value = String.valueOf(m.pos_lat);
 //                bigPanel.UpdateFields();
-
+// todo: срочно заняться этой процедурой. Брать не ноль, а тестовую строку "Марка". Лучше "Тип вызова"
                 bigPanel.panelItems.get(0).textField.setText(String.valueOf(m.pos_lat));
 
 //                bigPanel.invalidate();
@@ -257,20 +257,8 @@ public class SimpleMapApp {
         southPanel.add(log);
         log.log("INFO","Программа запущена");
 
-
-        Timer timer = new Timer(1000, new ActionListener() {
-
-            int seconds = 0;
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                seconds++;
-                labelPanel.setText("Время: " + seconds + " сек");
-//                log.log("Из таймера " + seconds);
-            }
-        });
-
-        timer.start();
+        MainTimer mainTimer = new MainTimer(labelPanel);
+        mainTimer.start();
 
 
 
