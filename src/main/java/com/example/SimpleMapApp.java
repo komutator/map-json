@@ -27,6 +27,8 @@ public class SimpleMapApp {
 
 
     public static void initMainWindow(){
+
+
         LogPanel log = new LogPanel();
 
         // Загружаем конфигурацию программы
@@ -186,6 +188,7 @@ public class SimpleMapApp {
         // помещение иконки на frame
         ImageIcon icon = new ImageIcon("./resource/icon.png");
         frame.setIconImage(icon.getImage());
+        frame.setJMenuBar(new MainMenu(frame));
 
 
 
