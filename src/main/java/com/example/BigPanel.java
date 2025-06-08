@@ -5,6 +5,26 @@ import javax.swing.*;
 
 public class BigPanel extends AbstractMiniPanel{
 
+    public int getFieldIndex(String s) {
+        int i = 0;
+        for(ScreenDataField dataField: fields){
+            if(dataField.label == s){
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
+
+    public void setFieldValue(String fieldLabel, String s) {
+        int z = getFieldIndex(fieldLabel);
+        if(z!=-1) {
+            panelItems.get(z).textField.setText(s);
+        } else {
+            panelItems.get(z).textField.setText("ОШИБКА, ПОЛЕ НЕ НАЙДЕНО");
+        }
+    }
+
     public class ScreenDataField{
 
         public ScreenDataField(String label, String value){

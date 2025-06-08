@@ -158,10 +158,13 @@ public class SimpleMapApp {
                 e.printStackTrace();
             }
 
+            MsdObject msdObject = databaseListPanel.msdObject.get(element_num);
+            bigPanel.setFieldValue("НАЛИЧИЕ ГОЛОСОВОГО СООБЩЕНИЯ", MsdConvertHelper.ToVoiceMessagePresent(msdObject));
+            bigPanel.setFieldValue("КООРДИНАТЫ", MsdConvertHelper.ToCoordinates(msdObject));
 
 
-            bigPanel.panelItems.get(0).textField.setText(String.valueOf("НЕ ОПРЕДЕЛЕН 00"));
-            bigPanel.panelItems.get(9).textField.setText(String.valueOf(m.tm));
+//            bigPanel.panelItems.get(0).textField.setText(String.valueOf("НЕ ОПРЕДЕЛЕН 00"));
+//            bigPanel.panelItems.get(9).textField.setText(String.valueOf(m.tm));
 //
 //            bigPanel.fields.get(0).value = String.valueOf(m.pos_lat);
 //            bigPanel.UpdateFields();
@@ -225,8 +228,31 @@ public class SimpleMapApp {
 
 //                bigPanel.fields.get(0).value = String.valueOf(m.pos_lat);
 //                bigPanel.UpdateFields();
+
+//                fields.add(new BigPanel.ScreenDataField("НАЛИЧИЕ ГОЛОСОВОГО СООБЩЕНИЯ", "ДА, КАЧЕСТВО НЕ ОПРЕДЕЛЕНО"));
+//                fields.add(new BigPanel.ScreenDataField("ТИП ВЫЗОВА", "АВТОМАТИЧЕСКИЙ"));
+//                fields.add(new BigPanel.ScreenDataField("МАРКА/МОДЕЛЬ", "Yohun Yohun PASSION"));
+//                fields.add(new BigPanel.ScreenDataField("КООРДИНАТЫ", "56\"23\' 106.125, 37\"19\'09.387"));
+//                fields.add(new BigPanel.ScreenDataField("Адрес на КВ", "Село Покровское"));
+//                // Panel 2
+//                fields.add(new BigPanel.ScreenDataField("MSD Version", "1"));
+//                fields.add(new BigPanel.ScreenDataField("Message ID", "1"));
+//                fields.add(new BigPanel.ScreenDataField("VIN", "18049850938098"));
+//                fields.add(new BigPanel.ScreenDataField("Storage type", "Benzo"));
+//                fields.add(new BigPanel.ScreenDataField("Timestamp", "12.10.2025 14.55.00"));
+//                fields.add(new BigPanel.ScreenDataField("Transport system", "ПТМ голосовой канал"));
+
+
 // todo: срочно заняться этой процедурой. Брать не ноль, а тестовую строку "Марка". Лучше "Тип вызова"
-                bigPanel.panelItems.get(0).textField.setText(String.valueOf(m.pos_lat));
+// m - текущий выбранный объект MND
+// bigPanel.panelItems.get(0).textField - нулевой элемент текстового поля в панели BigPanel
+                bigPanel.setFieldValue("НАЛИЧИЕ ГОЛОСОВОГО СООБЩЕНИЯ", MsdConvertHelper.ToVoiceMessagePresent(m));
+                bigPanel.setFieldValue("КООРДИНАТЫ", MsdConvertHelper.ToCoordinates(m));
+
+
+                // Это перенести в тесты
+                //                log.log("INFO", "ИНДЕКС НАЛИЧИЯ ГОЛОСОВОГО СООБЩЕНИЯ: " + z);
+
 
 //                bigPanel.invalidate();
 //                bigPanel.repaint();
